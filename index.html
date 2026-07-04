@@ -48,6 +48,16 @@
   }
   .rotate-device-overlay h2 { color: var(--ink); font-size: 18px; margin: 0 0 10px 0; font-weight: 700; }
   .rotate-device-overlay p { color: var(--muted); font-size: 13.5px; max-width: 320px; line-height: 1.5; margin: 0; }
+  
+  .btn-rotate-force {
+    margin-top: 20px; padding: 12px 22px;
+    background: linear-gradient(135deg, var(--cyan), #18a39a);
+    color: #041016; font-family: var(--sans); font-size: 13px; font-weight: 750;
+    border: none; border-radius: 25px; cursor: pointer;
+    box-shadow: 0 4px 15px rgba(64,224,212,0.4); transition: transform 0.2s;
+  }
+  .btn-rotate-force:active { transform: scale(0.96); }
+
   .rotate-badge {
     margin-top: 24px; font: 600 11px/1 var(--mono); color: var(--cyan);
     border: 1px solid var(--cyandim); background: rgba(64,224,212,0.1);
@@ -95,10 +105,12 @@
   }
   .btn-simulador:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(64,224,212,0.55); }
 
-  /* ---------- área tenant ---------- */
+  /* ---------- área tenant (SIN CURSOR HELP NI TOOLTIP EN EL FONDO GRANDE) ---------- */
   .tenant{position:absolute; left:248px; top:95px; width:1032px; height:600px;
           border:1.5px dashed var(--cyandim); border-radius:22px;
-          background:radial-gradient(700px 380px at 34% 42%, rgba(64,224,212,.045), transparent 70%); cursor: help;}
+          background:radial-gradient(700px 380px at 34% 42%, rgba(64,224,212,.045), transparent 70%);}
+  
+  /* Solo la etiqueta superior activa el mensaje explicativo */
   .tlabel{position:absolute; left:266px; top:80px; z-index:6;
           display:flex; align-items:center; gap:10px;
           background:#0C1428; border:1px solid var(--cyandim); border-radius:12px;
@@ -339,6 +351,7 @@
   <div class="rotate-icon">↻ 📱</div>
   <h2>Modo Panorámico Requerido</h2>
   <p>Para visualizar el mapa arquitectónico de Compurent con total claridad ejecutiva, por favor gira tu dispositivo a modo horizontal.</p>
+  <button class="btn-rotate-force" onclick="entrarModoHorizontal()">🗖 Ver en Pantalla Completa Horizontal</button>
   <div class="rotate-badge">MICROSOFT POWER PLATFORM</div>
 </div>
 
@@ -362,18 +375,17 @@
       </div>
     </div>
 
-    <div class="tenant"
-         data-exec-title="🏢 Microsoft 365 Tenant" 
-         data-exec-desc="Tu 'Edificio Privado Digital'. Garantiza que absolutamente ningún dato de Compurent salga a servidores externos ni sea accesible para extraños. Cero costo de licencias nuevas."></div>
+    <div class="tenant"></div>
+    
     <div class="tlabel"
-         data-exec-title="🏢 Microsoft 365 Tenant" 
-         data-exec-desc="Tu 'Edificio Privado Digital'. Garantiza que absolutamente ningún dato de Compurent salga a servidores externos ni sea accesible para extraños. Cero costo de licencias nuevas.">
+         data-exec-title="🏢 Entorno Microsoft 365" 
+         data-exec-desc=" Garantiza que ningún dato de Compurent salga a servidores externos ni sea accesible para extraños. Cero costo de licencias nuevas.">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>
       </svg>
       <div>
-        <div class="t1">Microsoft 365 · Tenant de Compurent</div>
-        <div class="t2">$0 en licencias adicionales · la app y los datos son propiedad de Compurent</div>
+        <div class="t1">Microsoft 365 · Entorno de Compurent</div>
+        <div class="t2">Sin licencias adicionales · la app y los datos son propiedad de Compurent</div>
       </div>
     </div>
 
@@ -409,16 +421,16 @@
 
     <div class="node a-indigo" style="left:276px; top:338px; width:164px; height:134px;"
          data-exec-title="🔐 Identificación SSO" 
-         data-exec-desc="Cero contraseñas. El sistema detecta automáticamente quién ingresó mediante su correo corporativo y sabe exactamente a qué área pertenece.">
+         data-exec-desc="El sistema detecta automáticamente quién ingresó mediante su correo corporativo y sabe exactamente a qué área pertenece.">
       <div class="ntop"><div class="ico"><svg viewBox="0 0 24 24" stroke="currentColor"><circle cx="8" cy="12" r="3.2"/><path d="M11 12h9M18 12v3.2M21 12v2.2"/></svg></div><span class="eyebrow">01 · Identidad</span></div>
       <h3>Inicio de sesión</h3><span class="tok">User().Email</span>
     </div>
 
     <div class="node hub a-cyan" style="left:494px; top:150px; width:290px; height:430px;"
          data-exec-title="📱 Power Apps (La Pantalla)" 
-         data-exec-desc="Adiós a escribir números a mano. Pantalla interactiva que calcula los pesos semestrales (8%, 7%, etc.) al instante mientras deslizas el dedo.">
+         data-exec-desc="Pantalla interactiva que calcula los pesos ponderados (8%, 7%, etc.) al instante mientras deslizas la barra de calificación.">
       <div class="ntop"><div class="ico"><svg viewBox="0 0 24 24" stroke="currentColor"><rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/></svg></div><span class="eyebrow">02 · Interfaz</span></div>
-      <h3>Power Apps · Canvas App</h3><p>La app reconoce el rol y arma la pantalla. Todo el cálculo ocurre aquí, en vivo.</p>
+      <h3>Power Apps · Canvas App</h3><p>La app reconoce el rol y arma la pantalla. Todo el cálculo ocurre visualmente al instante.</p>
       <div class="chips">
         <div class="chip">Formulario dinámico por rol</div>
         <div class="chip sim-trigger" onclick="openSim(event)">👉 Sliders + scorecard reactivo <span class="sc"><i class="g"></i><i class="a"></i><i class="r"></i></span></div>
@@ -430,14 +442,14 @@
 
     <div class="node a-cyan" style="left:846px; top:172px; width:244px; height:206px;"
          data-exec-title="🗄️ SharePoint (Base de Datos)" 
-         data-exec-desc="Reemplaza los archivos de Excel sueltos por una tabla centralizada, limpia, inborrable y confidencial de los 10 mayoristas estratégicos.">
+         data-exec-desc="Reemplaza los archivos de Excel sueltos por una tabla centralizada de los 10 mayoristas estratégicos.">
       <div class="ntop"><div class="ico"><svg viewBox="0 0 24 24" stroke="currentColor"><ellipse cx="12" cy="6" rx="7" ry="2.8"/><path d="M5 6v12c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8V6"/><path d="M5 12c0 1.6 3.1 2.8 7 2.8s7-1.2 7-2.8"/></svg></div><span class="eyebrow">03 · Datos</span></div>
-      <h3>SharePoint Lists</h3><p>Base única y limpia, dentro del tenant. Sin archivos sueltos.</p><span class="tok">Evaluacion_Proveedores</span><span class="tok">Roles_Usuarios</span>
+      <h3>SharePoint Lists</h3><p>Base única y limpia, dentro del entorno. Sin archivos sueltos.</p><span class="tok">Evaluacion_Proveedores</span><span class="tok">Roles_Usuarios</span>
     </div>
 
     <div class="node a-cyan dashed" style="left:1120px; top:172px; width:140px; height:206px;"
          data-exec-title="📊 Power BI (Tablero Directivo)" 
-         data-exec-desc="Módulo opcional para comparar el ranking histórico de todos los proveedores en gráficas directivas en una sola pantalla.">
+         data-exec-desc="Módulo opcional para crear un Dashboard interactivo del histórico de todos los proveedores en gráficas directivas en una sola pantalla.">
       <div class="badge-fase">FASE 2</div>
       <div class="ntop"><div class="ico"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M4 20V11M9.5 20V4M15 20v-6M20.5 20v-9M3 20h18"/></svg></div><span class="eyebrow">05 · Analítica</span></div>
       <h3>Power BI</h3><p>Ranking de proveedores en vivo. Opcional.</p>
@@ -445,7 +457,7 @@
 
     <div class="node a-amber" style="left:846px; top:430px; width:244px; height:116px;"
          data-exec-title="⚙️ Power Automate (El Motor)" 
-         data-exec-desc="Vigilante automático 24/7. Si la calificación de un proveedor da un resultado deficiente, dispara alarmas sin intervención humana.">
+         data-exec-desc="Si la calificación de un proveedor da un resultado deficiente lanza alarma automática.">
       <div class="ntop"><div class="ico"><svg viewBox="0 0 24 24" stroke="currentColor"><path d="M13 3 5 13h5l-1 8 8-11h-5l1-7z"/></svg></div><span class="eyebrow">04 · Automatización</span></div>
       <h3>Power Automate</h3><p>Se activa al guardar; notifica y alerta.</p>
     </div>
@@ -583,6 +595,19 @@
 </div>
 
 <script>
+  /* Función para solicitar Pantalla Completa y Bloqueo de Orientación */
+  function entrarModoHorizontal() {
+    let elem = document.documentElement;
+    let fs = elem.requestFullscreen || elem.webkitRequestFullscreen || elem.msRequestFullscreen;
+    if (fs) {
+      fs.call(elem).then(() => {
+        if (screen.orientation && screen.orientation.lock) {
+          screen.orientation.lock("landscape").catch(() => {});
+        }
+      }).catch(() => {});
+    }
+  }
+
   /* Auto-escalado proporcional y responsivo de la etapa principal */
   (function(){
     var vp=document.getElementById('viewport'), st=document.getElementById('stage');
